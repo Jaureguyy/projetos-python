@@ -1,19 +1,12 @@
 ##Ler uma matriz e demonstrar a soma de sua diagonal principal
 
-### 1 Loop será para a leitura da matriz, o 2° para a soma
+### 1 loop irá ler a linha (não vai salvar na matriz) e ao mesmo tempo irá somar o valor da diagonal principal (fazendo através de i==posição da diagonal principal)
 
 linhas, colunas = map(int,input("Digite o numero de linhas e colunas da matriz: ").split())
-matriz=[]
 soma=0
 
 for i in range(linhas):
     linha = list(map(int,input(f"Digite os valores da linha {i}: ").split()))
-    matriz.append(linha)
-
-
-for i in range(linhas):
-    for j in range(colunas):
-        if i==j:
-            soma+=matriz[i][j]
+    soma+=linha[i]
 
 print("A soma da diagonal principal eh:", soma)
