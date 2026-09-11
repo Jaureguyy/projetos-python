@@ -17,3 +17,11 @@ print(estado)
 print(profissao)
 print(f"\n{'-'*30}\n")
 
+## Se a quantidade de variáveis para desempacotar a tupla for menor, irá retornar erro. Neste caso o que é possível fazer é utilizar um '*' para capturar o resto
+
+nova_tupla = ("Guilherme", "Matheus", "Joana", "Otavio")
+aluno1, aluno2, *aluno3 = nova_tupla
+
+print(aluno1)
+print(aluno2)
+print(*aluno3)
