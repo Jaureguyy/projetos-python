@@ -21,4 +21,13 @@ print(f"\n{'-'*30}\n")
 
 #Apresentando os pares
 for chave, valor in produto.items():            ##Neste caso o endereço de entrega não existe pois ele não foi add no dicionario 
+    print(f"{chave}: {valor}")                  ##Para que realmente a chave/valor sejam adicionados caso não existam, é
+                                                ##necessário utilizar .setdefault('chave', 'valor') ou dicionario[chave] = valor
+print(f"\n{'-'*30}\n")
+
+#Adicionando definitivamente o endereço de entrega + responsavel -> rodando um novo loop para comprovar
+produto.setdefault("endereco_de_entrega", "rua Brasil")
+produto["responsavel"] = "Ratatui"
+
+for chave, valor in produto.items():
     print(f"{chave}: {valor}")
