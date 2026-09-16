@@ -21,4 +21,8 @@ def estatisticas(lista):
 
 lista = list(map(int, input(f"Digite os valores da lista: ").split()))
 
-print(estatisticas(lista))
+maior, menor, media = estatisticas(lista)
+
+print(f"Maior valor da lista: {maior}")
+print(f"Menor valor da lista: {menor}")
+print(f"Media dos valores da lista: {media}")
