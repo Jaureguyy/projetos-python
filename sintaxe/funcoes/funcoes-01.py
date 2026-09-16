@@ -5,14 +5,14 @@
 
 #Ler uma função para calcular a potêncio, a qual recebe uma base e um expoente com valor padrão =2
 
-def potencia(valor, expoente=2):
-    base=valor
-    for i in range(expoente-1):
+def potencia(base, expoente=2):
+    valor=base
+    for i in range(expoente-1):    ##  -1 por conta que "valor" já conta como base 1
         valor*=base
 
     return valor
 
-base = int(input("Digite a base da potencia: "))
-expoente = int(input("Defina um expoente para a potencia: "))
+base = int(input(f"Digite o valor da base: "))
+expoente = int(input(f"Defina o valor do expoente: "))
 
-print(f"Resultado da potencia: {potencia(base, expoente)}")
+print(potencia(base, expoente))
