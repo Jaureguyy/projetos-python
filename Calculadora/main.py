@@ -10,4 +10,18 @@ from operacoes import dispatcher
 
 calculo = input("\nDigite dois valoes e a operacao desejada\nFORMATO VALIDO: NUMERO OPERACAO NUMERO\n\n->")
 valor1, operacao, valor2 = calculo.split()
+valor1 = int(valor1)
+valor2 = int(valor2)
 
+while operacao != "X":
+    resultado = dispatcher(valor1, valor2, operacao)
+    print(f"Resultado: {resultado}\n")
+    novo_calculo = input(f"Digite a continuacao do calculo ou 'X' para cancelar:\n->{resultado} ")
+
+    if novo_calculo=="X":
+        break
+    operacao, valor2 = novo_calculo.split()
+    valor1 = resultado
+    valor2 = int(valor2)
+
+print(f"\nResultado Final: {resultado}")

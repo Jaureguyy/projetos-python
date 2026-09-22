@@ -17,7 +17,7 @@ def subtracao(valor, valor2):
     return valor - valor2
 
 def multiplicacao(valor, valor2):
-    return valor - valor2
+    return valor * valor2
 
 def divisao(valor, valor2):
     return valor / valor2
