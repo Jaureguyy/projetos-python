@@ -1,9 +1,10 @@
 """
 O enumerate serve para numerar itens enquanto percorre um iterável que retorna pares, semelhante ao que já foi utulizado em dicionários
 """
-
+## Lista de professores para aplicar no arquivo
 professores = ['Maria', 'Fábio', 'Mario', 'Adi']
 print('\n')
+## Print normal apenas para testar o enumerate
 for indice, professor in enumerate(professores): ##É possível fazer-> enumerate(professores, start=1);para poder definir o inicio
     print(f"{indice} : {professor}")
 
@@ -13,7 +14,11 @@ O que ele faz é percorrer algo e numerar o primeiro valor do par como no exempl
 
 print(f"\n{'*'*30}\n")
 
+
+## Lista de alunos para aplicar no arquivo
 alunos = ['Zézinho', 'Robinson', 'Batman', 'Jhony Bravo', 'Mary Jane']
+#print com enumerate porém desta vez com 'start=1
+
 for index, aluno in enumerate(alunos, start=1):  #Utilizando o "start"
     print(f"{index} : {aluno}")
 
