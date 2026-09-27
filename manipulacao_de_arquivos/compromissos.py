@@ -31,7 +31,7 @@ viagem = {
     'Descricao' : 'Viagem para SC'
 }
 
-compromissos = (onibus_manha, lanche_manha, viagem)
+compromissos = [onibus_manha, lanche_manha, viagem]
 
 # -----------------------------------------------------------
 
@@ -39,11 +39,30 @@ compromissos = (onibus_manha, lanche_manha, viagem)
 
 with open('compromissos.txt', 'w', encoding='utf-8') as arquivo:
      for compromisso in compromissos:
-         arquivo.write((f"{compromisso['Data']} | {compromisso['Hora']} | {compromisso['Descricao']}\n"))
+         arquivo.write((f"{compromisso['Data']}|{compromisso['Hora']}|{compromisso['Descricao']}\n"))
 
 ## Dando print do conteudo do arquivo .txt
 
 with open('compromissos.txt', 'r', encoding='utf-8') as arquivo:
      conteudo = arquivo.read()
 
-print(conteudo)
+print(f"{conteudo}\n\n{'*'*30}\n\n")
+
+# ------------------------------------------------------------
+
+## Lendo o arquivo linha por linha + Desempacotando cada informação e colocando elas em um dicionário->lista
+compromissos2 = []
+with open('compromissos.txt', 'r', encoding='utf-8') as arquivo:
+    for index, compromisso in enumerate(arquivo, start=1):
+        compromisso = compromisso.strip()
+        data, hora, descricao = compromisso.split('|')
+        dicionario = {
+            'Data' : data,
+            'Hora' : hora,
+            'Descricao' : descricao
+        }
+        compromissos2.append(dicionario)
+        print(f"{index} : {compromisso.split('|')}")
+
+print(f"\n{'*'*15}\n")
+print(f"Nova lista gerada com os compromissos:\n{compromissos2}")
