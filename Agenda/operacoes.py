@@ -31,29 +31,31 @@ def carregar_agenda(agenda):
                 agenda.setdefault(dia_atual,)
                 agenda[dia_atual].setdefault(nome_evento, novo_evento)
 
+# ------------------------------------------
+## Função para salvar a agenda
+
+def salvar_agenda(agenda):
+    with open('agenda.txt', 'w', encoding='utf-8') as arquivo:
+        for dia, eventos in agenda.items():
+            arquivo.write(f"## {dia}\n")
+            for nome_evento, dados in eventos.items():
+                arquivo.write(f"{nome_evento}|{dados['hora']}|{dados['descricao']}\n")
+
 # -------------------------------------------
-## Função para adicionar evento:
+# Função para adicionar evento:
 
 def adicionar_evento(agenda, dia_semana, nome_evento, hora, descricao):
     novo_evento = {
         'hora' : hora,
         'descricao' : descricao
     }
-    agenda = agenda[dia_semana].setdefault(nome_evento, novo_evento)
-
-    with open('agenda.txt', 'a', encoding='utf-8') as arquivo:
-        arquivo.write(f"{nome_evento}|{hora}|{descricao}")
-
+    agenda[dia_semana].setdefault(nome_evento, novo_evento)
 
 # --------------------------------------------
-## Função para remover eventos
+# Função para remover eventos
 
-# def remover_evento(agenda,dia_semana, nome_evento):
-#     agenda[dia_semana].pop(nome_evento)
-#     with open('agenda.txt', 'w', encoding='utf-8') as arquivo:
-#         for dia, eventos in agenda.items():
-#             for nome_evento, dados in eventos.items():
-#                 arquivo.write(f"{nome_evento}|{dados['hora']|dados['descricao']}\n")
+def remover_evento(agenda,dia_semana, nome_evento):
+    agenda[dia_semana].pop(nome_evento)
 
 # -----------------------------------------------
 ## Ler eventos de um dia em específico
