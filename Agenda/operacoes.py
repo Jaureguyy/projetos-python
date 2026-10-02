@@ -14,7 +14,22 @@
 '''
 
 # -------------------------------------------
-##  
+## Função para carregar a agenda
+
+def carregar_agenda(agenda):
+    with open('agenda.txt', 'r', encoding='utf-8') as arquivo:
+        dia_atual = None
+        for linha in arquivo:
+            if linha.startswith('##'):
+                dia_atual = linha.replace('##', '').strip()
+            else:
+                nome_evento, hora, descricao = linha.strip().split("|")
+                novo_evento = {
+                    'hora' : hora,
+                    'descricao' : descricao
+                }
+                agenda.setdefault(dia_atual,)
+                agenda[dia_atual].setdefault(nome_evento, novo_evento)
 
 # -------------------------------------------
 ## Função para adicionar evento:
@@ -33,9 +48,14 @@ def adicionar_evento(agenda, dia_semana, nome_evento, hora, descricao):
 # --------------------------------------------
 ## Função para remover eventos
 
-def remover_evento(agenda,dia_semana, nome_evento):
-    agenda[dia_semana].pop(nome_evento)
-    with open('agenda.txt', 'w', encoding='utf-8') as arquivo:
-        for dia, eventos in agenda.items():
-            for nome_evento, dados in eventos.items():
-                arquivo.write(f"{nome_evento}|{dados['hora']|dados['descricao']}\n")
+# def remover_evento(agenda,dia_semana, nome_evento):
+#     agenda[dia_semana].pop(nome_evento)
+#     with open('agenda.txt', 'w', encoding='utf-8') as arquivo:
+#         for dia, eventos in agenda.items():
+#             for nome_evento, dados in eventos.items():
+#                 arquivo.write(f"{nome_evento}|{dados['hora']|dados['descricao']}\n")
+
+# -----------------------------------------------
+## Ler eventos de um dia em específico
+
+# def ler_eventos(agenda, dia_semana):

@@ -1,7 +1,6 @@
 ## Por enquanto a main está sendo utilizada para testes das operações na agenda
 
-from operacoes import adicionar_evento
-from operacoes import remover_evento
+import operacoes
 
 # ----------------------------------------------------
 ## Estrutura de persistência
@@ -27,34 +26,52 @@ agenda = {
     'sabado' : {}
 }
 
+# -------------------------------------------------------
+## Carregando o evento
+
+
+agenda = operacoes.carregar_agenda(agenda)
+
+print(f"\n{'-'*30}\n")
+print(agenda)
+
+arquivo = open('agenda.txt', 'r', encoding='utf-8')
+conteudo = arquivo.read()
+arquivo.close()
+print(conteudo)
+
 
 # --------------------------------------------------------
 ## Adicionando um evento
-dia_semana = input("Digite o dia da semana: ")
-nome_evento = input("Digite o nome do evento: ")
-hora = input("Digite a hora do evento: ")
-descricao = input("Descricao do evento:\n")
+# dia_semana = input("Digite o dia da semana: ")
+# nome_evento = input("Digite o nome do evento: ")
+# hora = input("Digite a hora do evento: ")
+# descricao = input("Descricao do evento:\n")
 
-adicionar_evento(agenda, dia_semana, nome_evento, hora, descricao)
+# operacoes.adicionar_evento(agenda, dia_semana, nome_evento, hora, descricao)
 
-arquivo = open('agenda.txt', 'r')
-conteudo = arquivo.read()
-arquivo.close()
+# arquivo = open('agenda.txt', 'r')
+# conteudo = arquivo.read()
+# arquivo.close()
 
-print(conteudo)
-print(f"\n{'-'*30}\n")
+# print(conteudo)
+# print(f"\n{'-'*30}\n")
 
 # ---------------------------------------------------------
 ## Removendo um evento
 
-dia_semana = input("Digite o dia do evento que será removido: ")
-nome_evento = input("Digite o nome do evento que será removido: ")
+# dia_semana = input("Digite o dia do evento que será removido: ")
+# nome_evento = input("Digite o nome do evento que será removido: ")
 
-remover_evento(agenda, dia_semana, nome_evento)
+# operacoes.remover_evento(agenda, dia_semana, nome_evento)
 
-arquivo = open('agenda.txt', 'r')
-conteudo = arquivo.read()
-arquivo.close()
+# arquivo = open('agenda.txt', 'r')
+# conteudo = arquivo.read()
+# arquivo.close()
 
-print(conteudo)
-print(f"\n{'-'*30}\n")
+# print(conteudo)
+# print(f"\n{'-'*30}\n")
+
+# ----------------------------------------------------------
+## Lendo os eventos de um dia em específico
+
