@@ -1,6 +1,7 @@
 ## Por enquanto a main está sendo utilizada para testes das operações na agenda
 
 from operacoes import adicionar_evento
+from operacoes import remover_evento
 
 # ----------------------------------------------------
 ## Estrutura de persistência
@@ -35,6 +36,21 @@ hora = input("Digite a hora do evento: ")
 descricao = input("Descricao do evento:\n")
 
 adicionar_evento(agenda, dia_semana, nome_evento, hora, descricao)
+
+arquivo = open('agenda.txt', 'r')
+conteudo = arquivo.read()
+arquivo.close()
+
+print(conteudo)
+print(f"\n{'-'*30}\n")
+
+# ---------------------------------------------------------
+## Removendo um evento
+
+dia_semana = input("Digite o dia do evento que será removido: ")
+nome_evento = input("Digite o nome do evento que será removido: ")
+
+remover_evento(agenda, dia_semana, nome_evento)
 
 arquivo = open('agenda.txt', 'r')
 conteudo = arquivo.read()

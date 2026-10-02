@@ -28,3 +28,14 @@ def adicionar_evento(agenda, dia_semana, nome_evento, hora, descricao):
 
     with open('agenda.txt', 'a', encoding='utf-8') as arquivo:
         arquivo.write(f"{nome_evento}|{hora}|{descricao}")
+
+
+# --------------------------------------------
+## Função para remover eventos
+
+def remover_evento(agenda,dia_semana, nome_evento):
+    agenda[dia_semana].pop(nome_evento)
+    with open('agenda.txt', 'w', encoding='utf-8') as arquivo:
+        for dia, eventos in agenda.items():
+            for nome_evento, dados in eventos.items():
+                arquivo.write(f"{nome_evento}|{dados['hora']|dados['descricao']}\n")
