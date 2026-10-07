@@ -1,5 +1,5 @@
 '''
-@ As atuais operações da agenda: Adicionar evento, remover evento, ler eventos do dia X; Estas mesmas porém referentes a agenda ao todo também serão disponibilizadas (em vista que são mais fáceis por não ter muito parsing)
+@ As atuais operações da agenda: Adicionar evento, remover evento, ler eventos do dia X, carregar agenda, salvar agenda, ler agenda (inteira).
 
 @ O padrão de variáveis será:
 
@@ -59,5 +59,16 @@ def remover_evento(agenda,dia_semana, nome_evento):
 
 # -----------------------------------------------
 ## Ler eventos de um dia em específico
+def ler_eventos(dia_semana):
+    with open('agenda.txt', 'r', encoding='utf-8') as arquivo:
+        for linha in arquivo:
+            linha = linha.strip()
+            if linha == f"## {dia_semana}":
+                print(linha)
 
-# def ler_eventos(agenda, dia_semana):
+# ------------------------------------------------
+## Ler a agenda
+def ler_agenda():
+    with open('agend.txt', 'r', encoding='utf-8') as arquivo:
+        conteudo = arquivo.read()
+    print(conteudo)
