@@ -15,7 +15,6 @@
 
 # -------------------------------------------
 ## Função para carregar a agenda
-
 def carregar_agenda(agenda):
     with open('agenda.txt', 'r', encoding='utf-8') as arquivo:
         dia_atual = None
@@ -33,7 +32,6 @@ def carregar_agenda(agenda):
 
 # ------------------------------------------
 ## Função para salvar a agenda
-
 def salvar_agenda(agenda):
     with open('agenda.txt', 'w', encoding='utf-8') as arquivo:
         for dia, eventos in agenda.items():
@@ -43,7 +41,6 @@ def salvar_agenda(agenda):
 
 # -------------------------------------------
 # Função para adicionar evento:
-
 def adicionar_evento(agenda, dia_semana, nome_evento, hora, descricao):
     novo_evento = {
         'hora' : hora,
@@ -59,12 +56,15 @@ def remover_evento(agenda,dia_semana, nome_evento):
 
 # -----------------------------------------------
 ## Ler eventos de um dia em específico
-def ler_eventos(dia_semana):
-    with open('agenda.txt', 'r', encoding='utf-8') as arquivo:
-        for linha in arquivo:
-            linha = linha.strip()
-            if linha == f"## {dia_semana}":
-                print(linha)
+def ler_eventos(agenda, dia_semana):
+    print(f"Eventos de {dia_semana}:\n")
+    if agenda[dia_semana]:
+        for nome_evento, dados in agenda[dia_semana].items():
+            print(f"{nome_evento}|{dados['hora']}|{dados['descricao']}")
+    else:
+        carregar_agenda(agenda)
+        for nome_evento, dados in agenda[dia_semana].items():
+            print(f"{nome_evento}|{dados['hora']}|{dados['descricao']}")
 
 # ------------------------------------------------
 ## Ler a agenda
