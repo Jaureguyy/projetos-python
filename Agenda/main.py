@@ -1,19 +1,17 @@
-## Por enquanto a main está sendo utilizada para testes das operações na agenda
-
 import operacoes
 
 # ----------------------------------------------------
 ## Estrutura de persistência
 
 """
-agenda = {
-    dia = {
-        evento = {
-            hora : XXXX
-            descricao: XXXX
-        }    
-    }
-}
+agenda = {                          |                                 |                        |                 
+    dia = {                         |                                 |                        |
+        evento = {                  |     agenda = {                  |   eventos = {dados}    |   dados = {
+            hora : XXXX             |       dia = { eventos }         |                        |       'data' = XXXX
+            descricao: XXXX         |      }                          |                        |       'hora' = XXXX
+        }                           |                                 |                        |
+    }                               |                                 |                        |
+}                                   |                                 |                        |
 """
 
 agenda = {
@@ -26,54 +24,62 @@ agenda = {
     'sabado' : {}
 }
 
-# -------------------------------------------------------
-## Carregando o evento
+# ---------------------------------------------
+## 
 
+try:
+    operacoes.carregar_agenda(agenda)
+    print(f"\n\n{'-'*12}AGENDA{'-'*12}\n")
 
-agenda = operacoes.carregar_agenda(agenda)
+except FileNotFoundError:
+    print("Ageda Vazia . . . . . .\n\n")
+    with open('agenda.txt', 'w', encoding='utf-8') as arquivo:
+        arquivo.write("Agenda Vazia . . . . . . (cri cri cri cri)")
 
-print(f"\n{'-'*30}\n")
-print(agenda)
+while True:
+    print("Escolha uma opção:\n")
+    operacao = input("[1] - Adicionar Evento\n[2] - Remover Evento\n[3] - Ler Eventos\n[4] - Ler Agenda\n[5] - Salvar e Sair\n\n->")
 
-arquivo = open('agenda.txt', 'r', encoding='utf-8')
-conteudo = arquivo.read()
-arquivo.close()
-print(conteudo)
+    if operacao == '1':
+        print(f"[{operacao}] - Adicionar Evento:\n")
 
+        dia_semana = input("Digite o dia da semana: ")
+        nome_evento = input("Escreva o nome do evento: ")
+        hora = input("Digite a hora do evento: ")
+        descricao = input("Descricao do evento: ")
 
-# --------------------------------------------------------
-# Adicionando um evento
-dia_semana = input("Digite o dia da semana: ")
-nome_evento = input("Digite o nome do evento: ")
-hora = input("Digite a hora do evento: ")
-descricao = input("Descricao do evento:\n")
+        operacoes.adicionar_evento(agenda, dia_semana, nome_evento, hora, descricao)
+        operacoes.salvar_agenda(agenda)
 
-operacoes.adicionar_evento(agenda, dia_semana, nome_evento, hora, descricao)
-operacoes.salvar_agenda(agenda)
+        print(f"\nEvento adicionado com sucesso!")
 
-arquivo = open('agenda.txt', 'r')
-conteudo = arquivo.read()
-arquivo.close()
+    elif operacao == '2':
+        print(f"[{operacao}] - Remover Evento:\n")
 
-print(conteudo)
-print(f"\n{'-'*30}\n")
+        dia_semana = input("Escreva o dia do evento que será removido: ")
+        nome_evento = input("Digite o nome do evento: ")
 
-# ---------------------------------------------------------
-## Removendo um evento
+        operacoes.remover_evento(agenda, dia_semana, nome_evento)
+        operacoes.salvar_agenda(agenda)
 
-dia_semana = input("Digite o dia do evento que será removido: ")
-nome_evento = input("Digite o nome do evento que será removido: ")
+        print("\nEvento removido com sucesso!")
 
-operacoes.remover_evento(agenda, dia_semana, nome_evento)
-operacoes.salvar_agenda(agenda)
+    elif operacao == '3':
+        print(f"[{operacao}] - Ler Eventos:\n")
 
-arquivo = open('agenda.txt', 'r')
-conteudo = arquivo.read()
-arquivo.close()
+        dia_semana = input("Escreva o dia da semana para ler os seus eventos: ")
+        
+        operacoes.ler_eventos(agenda, dia_semana)
 
-print(conteudo)
-print(f"\n{'-'*30}\n")
+    elif operacao == '4':
+        print(f"[{operacao}] - Ler Agenda:\n")
 
-# ----------------------------------------------------------
-## Lendo os eventos de um dia em específico
+        operacoes.ler_agenda()
 
+    elif operacao == '5':
+        print(f"[{operacao}] - Salvar Agenda:\n")
+
+        operacoes.salvar_agenda(agenda)
+
+        print("\nAgenda Salva com sucesso!")
+        break
