@@ -77,7 +77,7 @@ while True:
         operacoes.ler_agenda()
 
     elif operacao == '5':
-        print(f"[{operacao}] - Salvar Agenda:\n")
+        print(f"[{operacao}] - Salvar e Sair:\n")
 
         operacoes.salvar_agenda(agenda)
 
