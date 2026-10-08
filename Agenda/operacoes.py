@@ -62,9 +62,7 @@ def ler_eventos(agenda, dia_semana):
         for nome_evento, dados in agenda[dia_semana].items():
             print(f"{nome_evento}|{dados['hora']}|{dados['descricao']}")
     else:
-        carregar_agenda(agenda)
-        for nome_evento, dados in agenda[dia_semana].items():
-            print(f"{nome_evento}|{dados['hora']}|{dados['descricao']}")
+        print("Não há eventos neste dia da semana")
 
 # ------------------------------------------------
 ## Ler a agenda
